@@ -21,7 +21,7 @@ path('check-marks/<int:pk>', views.check_marks_view,name='check-marks'),
 path('student-marks', views.student_marks_view,name='student-marks'),
 path('led_ago', views.led_board_ago,name='led_ago'),
 path('leaderboard/<int:course_id>/', views.leaderboard, name='leaderboard'),
- path('rate_quiz/<int:course_id>/', views.rate_quiz, name='rate_quiz'),
- path('quiz_detail/<int:course_id>/', views.quiz_detail, name='quiz_detail'),
+path('rate_quiz/<int:course_id>/', views.rate_quiz, name='rate_quiz'),
+path('quiz_detail/<int:course_id>/', views.quiz_detail, name='quiz_detail'),
 
 ]

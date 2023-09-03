@@ -1,29 +1,21 @@
 from django.shortcuts import render,redirect,reverse,get_object_or_404
 from . import forms,models
-from django.db.models import Sum
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required,user_passes_test
-from django.conf import settings
-from datetime import date, timedelta
+from django.contrib.auth.decorators import login_required
 from quiz import models as QMODEL
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login,logout,authenticate
 from quiz.models import Question,Course,Result,QuizHistory
-from quiz.forms import AnswerForm
 from category.models import CategoryModel
 from quiz.forms import RatingForm
 from quiz.models import QuizRating
 from django.db.models import Avg
 
 
-
-#for showing signup/login button for student
 def studentclick_view(request):
-    
     if request.user.is_authenticated:
         categories=CategoryModel.objects.all()
-        print(categories)
         return HttpResponseRedirect('student-dashboard',{'categories':categories})
     return render(request,'user_home.html')
 

@@ -1,7 +1,6 @@
 from django.db import models
 from students.models import Student
 from category.models import CategoryModel
-from django.utils import timezone
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 # Create your models here.
