@@ -59,7 +59,7 @@ ROOT_URLCONF = 'quiztaker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,11 +123,12 @@ USE_TZ = True
 STATIC_URL = 'static/'
 # print(BASE_DIR)
 STATICFILES_DIR =[
-    BASE_DIR /'core/static/'
+    BASE_DIR /'core/static'
 ]
 # print(STATICFILES_DIR)
+STATIC_ROOT= BASE_DIR /'core/static'
 
-MEDIA_ROOT=BASE_DIR / 'core/media/'
+MEDIA_ROOT=BASE_DIR / 'core/media'
 MEDIA_URL='media/'
 
 # Default primary key field type
