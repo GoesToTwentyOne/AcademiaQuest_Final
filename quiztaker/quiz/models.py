@@ -3,6 +3,7 @@ from students.models import Student
 from category.models import CategoryModel
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 # Create your models here.
 class Course(models.Model):
    course_name = models.CharField(max_length=50,null=False,blank=False)
@@ -13,12 +14,21 @@ class Course(models.Model):
    last_modified_date=models.DateTimeField(auto_now=True)
    average_rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.0)
    rating_count = models.PositiveIntegerField(default=0)
+   def clean(self):
+        min_questions = 5
+        max_questions = 50
+        if self.question_number < min_questions or self.question_number > max_questions:
+            raise ValidationError(
+                f"A quiz must have between {min_questions} and {max_questions} questions."
+            )
    def __str__(self):
         return self.course_name
 
 class Question(models.Model):
     course=models.ForeignKey(Course,on_delete=models.CASCADE)
     marks=models.PositiveIntegerField(null=False,blank=False)
+    description=models.CharField(max_length=150,null=True)
+    has_time_limit=models.PositiveIntegerField(null=True)
     question=models.CharField(max_length=600,null=False,blank=False)
     option1=models.CharField(max_length=200,null=False,blank=False)
     option2=models.CharField(max_length=200,null=False,blank=False)
