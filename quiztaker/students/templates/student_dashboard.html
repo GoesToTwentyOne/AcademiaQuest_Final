@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% block body %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category List</title>
+  <style>
+      /* Style for category list */
+      .category-list {
+          list-style-type: none;
+          padding: 0;
+      }
+
+      .category-list li {
+          cursor: pointer;
+          padding: 5px;
+          margin: 5px;
+          background-color: #f0f0f0;
+          border-radius: 5px;
+      }
+
+      /* Style for items */
+      .items {
+          display: none;
+      }
+
+      /* Style for showing all items */
+      .show-all {
+          display: block;
+      }
+  </style>
+</head>
+ <!-- .breadcumb-area start -->
+ <div class="breadcumb-area bg-img-4 ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    <h2>Dashboard</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>Register</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .breadcumb-area end -->
+<!-- checkout-area start -->
+
+<!-- ============================ COMPONENT REGISTER ============================ -->
+<div class="card mx-auto" style="max-width: 800px; margin-top: 40px;">
+  <article class="card-body account-form form-style">
+    <div class="text-center">
+      <header class="mb-4">
+        <h4 class="card-title">Dashboard</h4>
+      </header>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card w-100">
+          <div class="card-body">
+            <h5 class="card-title">Total Questions</h5>
+            
+            <button  class="btn btn-danger"  >Available: {{ total_question }}</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="card w-100">
+          <div class="card-body">
+            <h5 class="card-title">Total Exams </h5>
+            <button  class="btn btn-danger" >Available: {{ total_course }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card w-100">
+            <div class="card-body">
+                <h5 class="card-title">Category</h5>
+                <ul class="category-list">
+                    {% for category in categories %}
+                        <li>
+                            <a href="{% url 'products_by_category' category_slug=category.slug %}" onclick="showCategory('{{ category.category_name }}')">
+                                {{ category.category_name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+
+      
+      <div class="col-md-6">
+        <div class="card w-100">
+          <div class="card-body">
+            <h5 class="card-title">Leader Board</h5>
+            <a href="{% url 'led_ago' %}" class="btn btn-warning">Click Go</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+
+    
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card w-100">
+          <div class="card-body">
+            <h5 class="card-title">Quiz Exam For You</h5>
+            
+            <a href="{% url 'student-exam' %}" class="btn btn-warning">Click Go</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="card w-100">
+          <div class="card-body">
+            <h5 class="card-title">Marks You obtained</h5>
+            <a href="{% url 'student-marks' %}" class="btn btn-warning">Click Go</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card w-100">
+          <div class="card-body">
+            <h5 class="card-title">Quiz History</h5>
+            
+            <a href="{% url 'quiz_history' %}" class="btn btn-warning">Click Go</a>
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+
+
+
+    
+    <br><br><br><br><br><br><br><br><br>
+
+    
+
+</div>
+</div>
+</div>
+
+
+{% endblock %}
+

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block body %}
+ <!-- .breadcumb-area start -->
+ <div class="breadcumb-area bg-img-4 ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    <h2>Student Marks</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>Register</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .breadcumb-area end -->
+<br><br>
+<div class="container">
+  <div class="panel panel-primary">
+    <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+
+          <th>Exam Name</th>
+          
+          <th>Total Marks</th>
+          <th>Attempt</th>
+          <th>Exam Date</th>
+        </tr>
+      </thead>
+      {% for t in results %}
+      <tr>
+
+        <td> {{t.exam}}</td>
+        <td> {{t.marks}}</td>
+        <td>Attemp {{ forloop.counter }}</td>
+        <td> {{t.date}}</td>
+        
+        
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+<br><br><br><br><br><br>
+{% endblock %}

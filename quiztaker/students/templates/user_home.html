@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block body %}
+ <!-- .breadcumb-area start -->
+ <div class="breadcumb-area bg-img-4 ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    
+                    <ul>
+                        <li><a href="index.html"><h1 class="display-4">Hello, Student</h1></a></li>
+                        <li><span>Register</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .breadcumb-area end -->
+
+<div class="jumbotron" style="margin-bottom:0px; text-align: center;">
+
+    <p class="lead">Welcome to Quiz Expert </p>
+    <hr class="my-4">
+    <p>You can access various features after Login.</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{% url 'registrations' %}" role="button">Create Your Account</a>
+        <a class="btn btn-primary btn-lg" href="studentlogin" role="button">Login</a>
+    </p>
+    <br><br><br><br><br><br>
+</div>
+
+  {% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block body %}
+ <!-- .breadcumb-area start -->
+ <div class="breadcumb-area bg-img-4 ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    <h2>Account</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>Login</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .breadcumb-area end -->
+<!-- checkout-area start -->
+<section class="section-content padding-y">
+
+    <!-- ============================ COMPONENT REGISTER   ================================= -->
+        <div class="card mx-auto" style="max-width:800px; margin-top:40px;">
+          <article class="card-body account-form form-style">
+            <div class="text-center">
+            <header class="mb-4"><h4 class="card-title">Login</h4></header>
+            </div>
+<form class="box" method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <p class="text-muted">Please enter your login and password!</p>
+    
+    <input type="text" name="username" class="form-control" placeholder="Username" required>
+    <input type="password" name="password" class="form-control" placeholder="Password" required>
+    
+    <button type="submit" >Log In</button>
+</form>
+
+</div>
+</div>
+</div>
+{% endblock %}

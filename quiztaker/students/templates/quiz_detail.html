@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block body %}
+ <!-- .breadcumb-area start -->
+ <div class="breadcumb-area bg-img-4 ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    <h2>Quiz details </h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>Register</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .breadcumb-area end -->
+
+
+<br><br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ course.course_name }} Details</div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Description:</th>
+                                <td>{{ course.description }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Average Rating:</th>
+                                <td>
+                                    {% if average_rating %}
+                                        {{ average_rating|default:"No ratings yet" }}
+                                    {% else %}
+                                        No ratings yet
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <a href="{% url 'rate_quiz' course.id %}" class="btn btn-danger">Rate this quiz</a> <!-- Link to rate the quiz -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Add other content or functionality related to the quiz detail page -->
+</body>
+<br><br>
+{% endblock %}

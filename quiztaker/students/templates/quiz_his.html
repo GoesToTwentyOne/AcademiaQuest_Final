@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block body %}
+ <!-- .breadcumb-area start -->
+ <div class="breadcumb-area bg-img-4 ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    <h2>Quiz History For {{user.username}}</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>Register</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .breadcumb-area end -->
+<br><br/>
+<div class="container">
+    <div class="panel panel-primary">
+      <table class="table table-hover" id="dev-table" >
+        <h2 class='text-center' >Quiz History For {{user.username}}</h2>
+        <thead>
+          <tr>
+            <th>Course Name</th>
+            <th>Score</th>
+            <th>Date Taken</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for history in quiz_history %}
+          <tr>
+            <td><strong>{{ history.course.course_name }}</strong></td>
+            <td>{{ history.score }}</td>
+            <td>{{ history.date_taken|date:"F d, Y H:i A" }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="3">No quiz history available.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  
+
+<br><br><br><br><br><br>
+{% endblock %}
