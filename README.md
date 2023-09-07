@@ -57,6 +57,7 @@
 
 **Backend Development (Django):**
 - Python
+  
 **Frontend Development:**
 - HTML5
 - CSS3
