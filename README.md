@@ -1,4 +1,4 @@
-# Quiz Taker Expert - Project Proposal
+# Quiz Taker Expert
 
 **Project No:** 0
 
