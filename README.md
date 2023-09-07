@@ -54,11 +54,9 @@
 ## Conclusion
 
 **Quiz Taker Expert** aspires to deliver an engaging and interactive online quiz platform. With a clear set of features and a well-structured plan, we are confident in our ability to develop a high-quality product that fully aligns with the requirements and expectations outlined in this proposal.
-:
 
 **Backend Development (Django):**
 - Python
-
 **Frontend Development:**
 - HTML5
 - CSS3
