@@ -64,13 +64,11 @@
 - Bootstrap 4
 - JavaScript
 - React.js
-- 
+  
 
 
 
-
-Certainly, here's the updated README.md file with the additional information:
-
+# Deployment Guide 
 ```markdown
 # Quiz Taker Expert Deployment Guide
 
