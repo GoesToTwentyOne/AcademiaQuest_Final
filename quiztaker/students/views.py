@@ -50,7 +50,7 @@ def student_login(request):
         if user is not None:
             login(request, user)
             return redirect('student-dashboard') 
-    return render(request, 'studentlogin')
+    return render(request, 'login')
 
 
 @login_required
