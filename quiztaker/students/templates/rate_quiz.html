@@ -1,6 +1,41 @@
-<h1>Rate {{ course.course_name }}</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit Rating</button>
-</form>
+{% extends 'base.html' %}
+{% block title %}Quiz Expert - Rate Page {% endblock %}
+{% block body %}
+ <!-- .breadcumb-area start -->
+ <div class="breadcumb-area bg-img-4 ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    <h2>Rating</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>Register</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .breadcumb-area end -->
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="center-container" style="display: flex; justify-content: center; align-items: center;">
+    <div class="panel panel-primary" style="width: 40%;">
+      <h1 class="text-center" >Rate {{ course.course_name }}</h1>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br/>
+        <button class="btn btn-success" type="submit">Submit Rating</button>
+      </form>
+    </div>
+  </div>
+  
+<br/>
+<br/>
+<br/>
+<br/>
+{% endblock %}

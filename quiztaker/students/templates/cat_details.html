@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}Quiz Expert - Category Page {% endblock %}
 {% block body %}
 <head>
     <style>
@@ -6,7 +7,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          height: 25vh; /* This ensures the container takes up the full viewport height. */
+          height: 40vh; 
         }
       </style>
 </head>
@@ -29,16 +30,18 @@
 <!-- .breadcumb-area end -->
 
 <div class="center-container">
-    <div class="panel panel-primary" style="width: 25%;">
+    <div class="panel panel-primary" style="width: 50%;">
       <table class="table table-hover" id="dev-table">
         <thead>
           <tr>
-            <th class="text-center" colspan="4">Available Quizzes</th>
+            <th class="text-center bg-danger text-light" colspan="4">Available Quizzes {{category.category_name}} category </th>
           </tr>
         </thead>
         <tbody>
           {% for t in courses %}
-          <tr>
+          <tr class="table-secondary">
+
+            <td>{{forloop.counter}}</td>
             <td>{{ t.course_name }}</td>
           </tr>
           {% endfor %}
@@ -47,6 +50,5 @@
     </div>
   </div>
   
-
-<br><br><br><br><br><br>
+<br><br><br>
 {% endblock %}

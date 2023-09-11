@@ -50,7 +50,7 @@ def student_login(request):
         if user is not None:
             login(request, user)
             return redirect('student-dashboard') 
-    return render(request, 'login')
+    return render(request, 'studentlogin')
 
 
 @login_required
@@ -155,7 +155,7 @@ def Course_cat(request,category_slug=None):
         categories=CategoryModel.objects.all()
         category=get_object_or_404(CategoryModel,slug=category_slug)
         Courses=Course.objects.filter(category=category)
-        return render(request,'cat_details.html',{'courses':Courses,'categories':categories})
+        return render(request,'cat_details.html',{'courses':Courses,'categories':categories,'category':category})
         
    
 
