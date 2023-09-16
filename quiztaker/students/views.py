@@ -12,11 +12,11 @@ from quiz.forms import RatingForm
 from quiz.models import QuizRating
 from django.db.models import Avg
 
-
 def studentclick_view(request):
     if request.user.is_authenticated:
         categories=CategoryModel.objects.all()
-        return HttpResponseRedirect('student-dashboard',{'categories':categories})
+        HttpResponseRedirect('student-dashboard',{'categories':categories})
+        return redirect('student-dashboard')
     return render(request,'user_home.html')
 
 def student_signup_view(request):
@@ -35,7 +35,7 @@ def student_signup_view(request):
             student.save()
             my_student_group = Group.objects.get_or_create(name='STUDENT')
             my_student_group[0].user_set.add(user)
-        return HttpResponseRedirect('studentlogin')
+        return redirect('studentlogin')
     return render(request,'signup.html',context=mydict)
 
 class Student_logIn(LoginView):
@@ -62,70 +62,75 @@ def is_student(user):
     return user.groups.filter(name='STUDENT').exists()
 
 
-
-
-
-
 def student_dashboard_view(request):
-    categories=CategoryModel.objects.all()
-    dict={
-    'total_course':QMODEL.Course.objects.all().count(),
-    'total_question':QMODEL.Question.objects.all().count(),
-    'categories':categories,
-    }
-    return render(request,'student_dashboard.html',context=dict)
+    if request.user.is_authenticated:
+        categories=CategoryModel.objects.all()
+        dict={
+        'total_course':QMODEL.Course.objects.all().count(),
+        'total_question':QMODEL.Question.objects.all().count(),
+        'categories':categories,
+        }
+        return render(request,'student_dashboard.html',context=dict)
+    return redirect('studentlogin')
 
 
 def student_exam_view(request):
-    courses=QMODEL.Course.objects.all()
-    return render(request,'student_exam.html',{'courses':courses})
+    if request.user.is_authenticated:
+        courses=QMODEL.Course.objects.all()
+        return render(request,'student_exam.html',{'courses':courses})
+    return redirect('studentlogin')
 
 
 def take_exam_view(request,pk):
-    course=QMODEL.Course.objects.get(id=pk)
-    total_questions=QMODEL.Question.objects.all().filter(course=course).count()
-    questions=QMODEL.Question.objects.all().filter(course=course)
-    total_marks=0
-    for q in questions:
-        total_marks=total_marks + q.marks
-    
-    return render(request,'take_exam.html',{'course':course,'total_questions':total_questions,'total_marks':total_marks})
+    if request.user.is_authenticated:
+        course=QMODEL.Course.objects.get(id=pk)
+        total_questions=QMODEL.Question.objects.all().filter(course=course).count()
+        questions=QMODEL.Question.objects.all().filter(course=course)
+        total_marks=0
+        for q in questions:
+            total_marks=total_marks + q.marks
+        return render(request,'take_exam.html',{'course':course,'total_questions':total_questions,'total_marks':total_marks})
+    return redirect('studentlogin')
 
 
 def start_exam_view(request,pk):
-    course=QMODEL.Course.objects.get(id=pk)
-    questions=QMODEL.Question.objects.all().filter(course=course)
-    if request.method=='POST':
-        pass
-    response= render(request,'start_exam.html',{'course':course,'questions':questions})
-    response.set_cookie('course_id',course.id)
-    return response
+    if request.user.is_authenticated:
+        course=QMODEL.Course.objects.get(id=pk)
+        questions=QMODEL.Question.objects.all().filter(course=course)
+        if request.method=='POST':
+            pass
+        response= render(request,'start_exam.html',{'course':course,'questions':questions})
+        response.set_cookie('course_id',course.id)
+        return response
+    return redirect('studentlogin')
 
 def calculate_marks_view(request):
-    if request.method == 'POST':
-        total_marks = 0
-        course_id = request.COOKIES.get('course_id')
-        course = Course.objects.get(id=course_id)
-        questions = Question.objects.filter(course=course)
-        for i, question in enumerate(questions):
-            answer_key = f'answer_{question.id}'
-            selected_ans = request.POST.get(answer_key)
-            actual_answer = question.answer
-            if selected_ans == actual_answer:
-                total_marks += question.marks
-        student = QMODEL.Student.objects.get(user_id=request.user.id)
-        result = Result()
-        result.marks = total_marks
-        result.exam = course
-        result.student = student
-        result.save()
-        quiz_history = QuizHistory.objects.create(
-        user=request.user,
-        course=course,
-        score=int(result.marks),
-    )
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            total_marks = 0
+            course_id = request.COOKIES.get('course_id')
+            course = Course.objects.get(id=course_id)
+            questions = Question.objects.filter(course=course)
+            for i, question in enumerate(questions):
+                answer_key = f'answer_{question.id}'
+                selected_ans = request.POST.get(answer_key)
+                actual_answer = question.answer
+                if selected_ans == actual_answer:
+                    total_marks += question.marks
+            student = QMODEL.Student.objects.get(user_id=request.user.id)
+            result = Result()
+            result.marks = total_marks
+            result.exam = course
+            result.student = student
+            result.save()
+            quiz_history = QuizHistory.objects.create(
+            user=request.user,
+            course=course,
+            score=int(result.marks),
+        )
 
-        return HttpResponseRedirect('view-result')
+            return redirect('view-result')
+    return redirect('studentlogin')
    
 
 
@@ -134,85 +139,99 @@ def calculate_marks_view(request):
 
 
 def view_result_view(request):
-    courses=QMODEL.Course.objects.all()
-    return render(request,'view_result.html',{'courses':courses})
+    if request.user.is_authenticated:
+        courses=QMODEL.Course.objects.all()
+        return render(request,'view_result.html',{'courses':courses})
+    return redirect('studentlogin')
     
 
 
 def check_marks_view(request,pk):
-    course=QMODEL.Course.objects.get(id=pk)
-    student = models.Student.objects.get(user_id=request.user.id)
-    results= QMODEL.Result.objects.all().filter(exam=course).filter(student=student)
-    return render(request,'check_marks.html',{'results':results})
+    if request.user.is_authenticated:
+        course=QMODEL.Course.objects.get(id=pk)
+        student = models.Student.objects.get(user_id=request.user.id)
+        results= QMODEL.Result.objects.all().filter(exam=course).filter(student=student)
+        return render(request,'check_marks.html',{'results':results})
+    return redirect('studentlogin')
 
 
 def student_marks_view(request):
-    courses=QMODEL.Course.objects.all()
-    return render(request,'student_marks.html',{'courses':courses})
+    if request.user.is_authenticated:
+        courses=QMODEL.Course.objects.all()
+        return render(request,'student_marks.html',{'courses':courses})
+    return redirect('studentlogin')
 
 
 def Course_cat(request,category_slug=None):
+    if request.user.is_authenticated:
         categories=CategoryModel.objects.all()
         category=get_object_or_404(CategoryModel,slug=category_slug)
         Courses=Course.objects.filter(category=category)
         return render(request,'cat_details.html',{'courses':Courses,'categories':categories,'category':category})
-        
+    return redirect('studentlogin')    
    
 
 def led_board_ago(request):
-    courses=QMODEL.Course.objects.all()
-    return render(request,'led_ago.html',{'courses':courses})
+    if request.user.is_authenticated:
+        courses=QMODEL.Course.objects.all()
+        return render(request,'led_ago.html',{'courses':courses})
+    return redirect('studentlogin')
     
 def leaderboard(request, course_id, top_n=10):
-    course = Course.objects.get(pk=course_id)
-    leaderboard = Result.objects.filter(exam=course).order_by('-marks')[:top_n]
-    context = {
-        'course': course,
-        'leaderboard': leaderboard,
-    }
-    return render(request, 'led_board.html', context)
+    if request.user.is_authenticated:
+        course = Course.objects.get(pk=course_id)
+        leaderboard = Result.objects.filter(exam=course).order_by('-marks')[:top_n]
+        context = {
+            'course': course,
+            'leaderboard': leaderboard,
+        }
+        return render(request, 'led_board.html', context)
+    return redirect('studentlogin')
 
 def quiz_history(request):
-    user = request.user
-    quiz_history = QuizHistory.objects.filter(user=user).order_by('-date_taken')
-    context = {
-        'user': user,
-        'quiz_history': quiz_history,
-    }
-    return render(request, 'quiz_his.html', context)
-  
+    if request.user.is_authenticated:
+        user = request.user
+        quiz_history = QuizHistory.objects.filter(user=user).order_by('-date_taken')
+        context = {
+            'user': user,
+            'quiz_history': quiz_history,
+        }
+        return render(request, 'quiz_his.html', context)
+    return redirect('studentlogin')
   
   
 def rate_quiz(request, course_id):
-    course = Course.objects.get(pk=course_id)
-    user = request.user
-    if request.method == 'POST':
-        form = RatingForm(request.POST)
-        if form.is_valid():
-            rating_value = form.cleaned_data['rating']
-            QuizRating.objects.create(user=user, course=course, rating=rating_value)
-            return redirect('quiz_detail', course_id=course_id)  
-    else:
-        form = RatingForm()
+    if request.user.is_authenticated:
+        course = Course.objects.get(pk=course_id)
+        user = request.user
+        if request.method == 'POST':
+            form = RatingForm(request.POST)
+            if form.is_valid():
+                rating_value = form.cleaned_data['rating']
+                QuizRating.objects.create(user=user, course=course, rating=rating_value)
+                return redirect('quiz_detail', course_id=course_id)  
+        else:
+            form = RatingForm()
 
-    context = {
-        'course': course,
-        'form': form,
-    }
+        context = {
+            'course': course,
+            'form': form,
+        }
 
-    return render(request, 'rate_quiz.html', context)
+        return render(request, 'rate_quiz.html', context)
+    return redirect('studentlogin')
 
 
 
 
 def quiz_detail(request, course_id):
-    course = Course.objects.get(pk=course_id)
-    average_rating = QuizRating.objects.filter(course=course).aggregate(Avg('rating'))['rating__avg']
-
-    context = {
-        'course': course,
-        'average_rating': average_rating,
-    }
-
-    return render(request, 'quiz_detail.html', context)
+    if request.user.is_authenticated:
+        course = Course.objects.get(pk=course_id)
+        average_rating = QuizRating.objects.filter(course=course).aggregate(Avg('rating'))['rating__avg']
+        context = {
+            'course': course,
+            'average_rating': average_rating,
+        }
+        return render(request, 'quiz_detail.html', context)
+    return redirect('studentlogin')
 

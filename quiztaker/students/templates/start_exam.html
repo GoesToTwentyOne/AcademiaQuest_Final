@@ -18,37 +18,38 @@
     </div>
 </div>
 <!-- .breadcumb-area end -->
+<div class="container my-4">
+    <div class="jumbotron ">
+        <form  action="{% url 'calculate-marks' %}" method="POST">
+            {% csrf_token %}
+            {% for question in questions %}
+            <h3 class="text-info ">{{ forloop.counter }}. {{ question.question }}</h3>
+            <h4 style="text-align: right;">[Marks {{ question.marks }}]</h4>
+        
+            <label for="answer_{{ question.id }}">{{ question.question_text }}</label><br>
+            <select id="answer_{{ question.id }}" name="answer_{{ question.id }}">
+                {% for option, option_label in question.cat %}
+                <option value="{{ option }}"> {{ option_label }}   -----           {% if option_label == 'Option1' %} {{ question.option1 }}
+                    {% elif option_label == 'Option2' %} {{ question.option2 }}
+                    {% elif option_label == 'Option3' %} {{ question.option3 }}
+                    {% elif option_label == 'Option4' %} {{ question.option4 }}
+                    {% elif option_label == 'Option5' %} {{ question.option5 }}
+                    {% elif option_label == 'Option6' %} {{ question.option6 }}
+                    {% elif option_label == 'Option7' %} {{ question.option7 }}
+                    {% elif option_label == 'Option8' %} {{ question.option8 }}
+                    {% elif option_label == 'Option9' %} {{ question.option9 }}
+                    {% elif option_label == 'Option10' %} {{ question.option10 }}
+                    {% endif %}
+                </option>
+                {% endfor %}
+            </select>
+            <br/>
 
-<div class="jumbotron my-4">
-    <form  action="{% url 'calculate-marks' %}" method="POST">
-        {% csrf_token %}
-        {% for question in questions %}
-        <h3 class="text-info">{{ forloop.counter }}. {{ question.question }}</h3>
-        <h4 style="text-align: right;">[Marks {{ question.marks }}]</h4>
-    
-        <label for="answer_{{ question.id }}">{{ question.question_text }}</label><br>
-        <select id="answer_{{ question.id }}" name="answer_{{ question.id }}">
-            {% for option, option_label in question.cat %}
-            <option value="{{ option }}"> {{ option_label }}   -----           {% if option_label == 'Option1' %} {{ question.option1 }}
-                {% elif option_label == 'Option2' %} {{ question.option2 }}
-                {% elif option_label == 'Option3' %} {{ question.option3 }}
-                {% elif option_label == 'Option4' %} {{ question.option4 }}
-                {% elif option_label == 'Option5' %} {{ question.option5 }}
-                {% elif option_label == 'Option6' %} {{ question.option6 }}
-                {% elif option_label == 'Option7' %} {{ question.option7 }}
-                {% elif option_label == 'Option8' %} {{ question.option8 }}
-                {% elif option_label == 'Option9' %} {{ question.option9 }}
-                {% elif option_label == 'Option10' %} {{ question.option10 }}
-                {% endif %}
-            </option>
             {% endfor %}
-        </select>
-        <br/>
-
-        {% endfor %}
-        <br/>
-        <input class="btn btn-info btn-lg" type="submit" value="Submit">
-    </form>
+            <br/>
+            <input class="btn btn-info btn-lg" type="submit" value="Submit">
+        </form>
+    </div>
 </div>
 <br><br><br><br><br><br>
 {% endblock %}
