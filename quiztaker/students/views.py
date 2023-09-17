@@ -12,6 +12,7 @@ from quiz.forms import RatingForm
 from quiz.models import QuizRating
 from django.db.models import Avg
 
+
 def studentclick_view(request):
     if request.user.is_authenticated:
         categories=CategoryModel.objects.all()
