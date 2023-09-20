@@ -26,7 +26,7 @@
           <article class="card-body account-form form-style">
             <div class="text-center">
             <header class="mb-4"><h4 class="card-title">Login</h4></header>
-            </div>
+        </div>
 <form class="box" method="post" action="{% url 'login' %}">
     {% csrf_token %}
     <p class="text-muted">Please enter your login and password!</p>
@@ -40,4 +40,6 @@
 </div>
 </div>
 </div>
+</section>
+
 {% endblock %}
