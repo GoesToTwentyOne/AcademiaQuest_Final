@@ -48,7 +48,14 @@
                                 <ul class="dropdown_style">
                                      {% if request.user.is_authenticated %}
                                     <li><a href="{% url 'student-dashboard' %}"> Dashboard </a></li>
-                                    <li><a href="{% url 'logout' %}"> Logout </a></li>
+                                    <li>
+                                        <form action="{% url 'logout' %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" style="background-color: transparent; border: none; color: white;">Logout</button>
+                                        </form>
+                                    </li>
+                                   
+                
                                     {% else %}
                                     <li><a href="{% url 'registrations' %}"> Register </a></li>
                                     <li><a href="{% url 'studentlogin' %}"> Login </a></li>
@@ -68,7 +75,7 @@
                     <div class="col-lg-3 col-md-7 col-sm-6 col-6">
                         <div class="logo">
                             <a href="{% url 'home' %}">
-                        <h3>QuizCraft Pro</h3>
+                        <h3>AcademiaQuest</h3>
                         </a>
                         </div>
                     </div>

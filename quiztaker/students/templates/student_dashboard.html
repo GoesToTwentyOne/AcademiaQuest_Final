@@ -88,7 +88,7 @@
                 <ul class="category-list">
                     {% for category in categories %}
                         <li>
-                            <a href="{% url 'products_by_category' category_slug=category.slug %}" onclick="showCategory('{{ category.category_name }}')">
+                            <a href="{% url 'category' category_slug=category.slug %}" onclick="showCategory('{{ category.category_name }}')">
                                 {{ category.category_name }}
                             </a>
                         </li>
