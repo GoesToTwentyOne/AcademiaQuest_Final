@@ -50,10 +50,6 @@ AcademiaQuest is a web-based application designed to make learning fun and easy 
 ## To Sum Up
 AcademiaQuest aims to be an enjoyable learning companion for both students and teachers. By providing features that enhance the learning experience, we're excited about our idea and hope you join us in bringing it to life.
 
-## Conclusion
-
-**Quiz Taker Expert** aspires to deliver an engaging and interactive online quiz platform. With a clear set of features and a well-structured plan, we are confident in our ability to develop a high-quality product that fully aligns with the requirements and expectations outlined in this proposal.
-
 **Backend Development (Django):**
 - Python
   
