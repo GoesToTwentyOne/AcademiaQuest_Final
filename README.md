@@ -1,55 +1,54 @@
-# Quiz Taker Expert
-
-**Project No:** 0
+# AcademiaQuest
 
 ## Project Overview
+AcademiaQuest is a web-based application designed to make learning fun and easy for both students and teachers. It serves as an educational hub offering features such as quizzes, studying old questions, ranking systems, and more. Developed using the python,Django framework and following the Model-View-Template (MVT) pattern, AcademiaQuest aims to provide a seamless and user-friendly experience for users in universities.
 
-**Quiz Zone** is an online platform that empowers users to create and participate in quizzes. It accommodates two distinct user roles: administrators (admins) with the capability to craft quizzes, and end-users (viewers/users) who can engage in these quizzes.
+## Objectives
+- Construct a user-friendly educational hub.
+- Make learning enjoyable through quizzes, studying old questions, and a ranking system.
+- Boost efficiency in education by simplifying quiz creation and study access.
 
-## Project Features
+## Project Stakeholders
+- **Development Team**: Implement proposed features including user authentication, quiz creation, taking, progress tracking, categories, filtering, ratings, and deployment.
+- **Students**: End users who will utilize AcademiaQuest for quizzes, studying old questions, and accessing educational features.
+- **Teachers/Instructors/Admins**: Admins who create quizzes and manage educational content. Instructors will use AcademiaQuest for creating quizzes, managing questions, tracking student progress, and accessing features tailored for educators.
 
-### User Authentication
+## Key Features
+1. **User Authentication:**
+   - Multi-Factor Authentication (MFA)
+   - Account Recovery
+   - Role-Based Access Control (RBAC)
 
-- **User Registration and Login:** A robust system for user registration and login is implemented.
-- **User Profile Management:** Both admins and viewers have the ability to manage their profiles effectively.
+2. **Quiz Creation for Admin (Teachers):**
+   - Create quizzes with titles, descriptions, categories, and other necessary fields.
+   - Add multiple-choice questions to quizzes.
+   - Specify correct answers, point values, and time limits for quizzes.
+   - Support for rich media in questions.
 
-### Quiz Creation for Admin
+3. **Quiz Taking:**
+   - Display questions one at a time with multiple-choice options.
+   - Allow users to browse and select quizzes.
+   - Implement timers for quizzes with time limits.
+   - Provide immediate feedback and display final scores.
 
-- **Quiz Creation:** Admins have the capability to create quizzes, including specifying titles, descriptions, categories, and other essential information.
-- **Multiple-choice Questions:** Admins can add multiple-choice questions to their quizzes.
-- **Question Quantity Control:** Each quiz must consist of a minimum of 5 and a maximum of 50 questions. Each question is required to have between 2 and 10 multiple-choice options.
-- **Answer Specification:** Admins are allowed to specify correct answers and assign point values to each question.
-- **Time Limits:** Admins can optionally set time limits for quizzes.
+4. **User Progress:**
+   - Track and display user quiz history and scores.
+   - Show progress indicators for ongoing quizzes.
+   - Display leaderboards for top scores.
 
-### Quiz Taking
+5. **Quiz Categories and Filtering:**
+   - Search functionality for finding quizzes based on keywords or topics.
+   - Access to past exam questions sorted by year and level-term.
 
-- **Quiz Selection:** Users can easily explore and select quizzes they wish to take.
-- **Sequential Question Presentation:** Questions are presented one at a time, with options for multiple-choice questions.
-- **Quiz Timer:** A timer is integrated for quizzes with specified time limits.
-- **Immediate Feedback:** Users receive immediate feedback on the correctness of their answers.
-- **Final Score Display:** At the end of the quiz, the system calculates and displays the user's final score.
+6. **Quiz Ratings:**
+   - Moderation system for reviewing and filtering ratings.
 
-### User Progress
+7. **Deployment and Submission:**
+   - Continuous Integration/Continuous Deployment (CI/CD)
+   - Backup and Recovery
 
-- **Quiz History:** User quiz history, including records of completed quizzes and scores, is meticulously tracked and displayed.
-- **Progress Indicators:** Progress indicators for quizzes in progress are provided, either through a progress bar or numerical values.
-- **Leaderboards:** Leaderboards showcasing top scores in quizzes are accessible.
-
-### Quiz Categories and Filtering
-
-- **Quiz Categorization:** Quizzes are categorized to facilitate efficient sorting and retrieval.
-- **Category Filtering:** Users have the convenience of filtering quizzes by category.
-
-### Quiz Ratings
-
-- **User Ratings:** Users can contribute ratings for quizzes.
-- **Average Ratings:** The platform displays an average rating for each quiz.
-- **Sorting by Rating:** Quizzes can be sorted by their ratings on a scale from 1 to 7.
-
-### Deployment and Submission
-
-- **Deployment:** The Django-based Quiz Zone website is deployed on a secure and scalable hosting platform.
-- **Assignment Submission:** All assignment-related data is submitted in accordance with the instructions provided in the assignment instruction module.
+## To Sum Up
+AcademiaQuest aims to be an enjoyable learning companion for both students and teachers. By providing features that enhance the learning experience, we're excited about our idea and hope you join us in bringing it to life.
 
 ## Conclusion
 
