@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Quiz Expert - Category Page {% endblock %}
+{% block body %}
+<head>
+    <style>
+        .center-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 40vh; 
+        }
+      </style>
+</head>
+ <!-- .breadcumb-area start -->
+ <div class="breadcumb-area bg-img-4 ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    <h2>Category Details</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>Register</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .breadcumb-area end -->
+
+<div class="center-container">
+    <div class="panel panel-primary" style="width: 50%;">
+      <table class="table table-hover" id="dev-table">
+        <thead>
+          <tr>
+            <th class="text-center bg-danger text-light" colspan="4">Available Quizzes {{category.category_name}} category </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for t in courses %}
+          <tr class="table-secondary">
+
+            <td>{{forloop.counter}}</td>
+            <td>{{ t.course_name }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+<br><br><br>
+{% endblock %}

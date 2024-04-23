@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% block title %}Quiz Expert - Dashboard Page {% endblock %}
+{% block body %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category List</title>
+  <style>
+      /* Style for category list */
+      .category-list {
+          list-style-type: none;
+          padding: 0;
+      }
+
+      .category-list li {
+          cursor: pointer;
+          padding: 5px;
+          margin: 5px;
+          background-color: #f0f0f0;
+          border-radius: 5px;
+      }
+
+      /* Style for items */
+      .items {
+          display: none;
+      }
+
+      /* Style for showing all items */
+      .show-all {
+          display: block;
+      }
+  </style>
+</head>
+ <!-- .breadcumb-area start -->
+ <div class="breadcumb-area bg-img-4 ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    <h2>Dashboard</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>Register</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .breadcumb-area end -->
+<!-- checkout-area start -->
+
+<!-- ============================ COMPONENT REGISTER ============================ -->
+<div class="container-fluid mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h4 class="card-title mb-0">Dashboard</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h5 class="card-title text-primary">Total Questions</h5>
+                  <button class="btn btn-outline-danger btn-block">{{ total_question }} Available</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h5 class="card-title text-primary">Total Exams</h5>
+                  <button class="btn btn-outline-danger btn-block">{{ total_course }} Available</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h5 class="card-title text-primary">Category</h5>
+                  <ul class="list-group category-list">
+                    {% for category in categories %}
+                    <li class="list-group-item">
+                      <a href="{% url 'category' category_slug=category.slug %}" onclick="showCategory('{{ category.category_name }}')">{{ category.category_name }}</a>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h5 class="card-title text-primary">Leader Board</h5>
+                  <a href="{% url 'led_ago' %}" class="btn btn-warning btn-block">Click & Watch Leader Board</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h5 class="card-title text-primary">Quiz Exam For You</h5>
+                  <a href="{% url 'student-exam' %}" class="btn btn-info btn-block">Click & Take Exam</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h5 class="card-title text-primary">Marks You Obtained</h5>
+                  <a href="{% url 'student-marks' %}" class="btn btn-danger btn-block">Click & Watch Your Marks</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h5 class="card-title text-primary">Quiz History</h5>
+                  <a href="{% url 'quiz_history' %}" class="btn btn-success btn-block">Click & Watch Quiz History</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 offset-md-3">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h5 class="card-title text-primary">Previous Question Upload</h5>
+                  <a href="{% url 'Previous_Question_upload' %}" class="btn btn-success btn-block">Click & Upload Questions</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+    <br><br><br><br><br><br><br><br><br>
+
+    
+
+</div>
+</div>
+</div>
+
+
+{% endblock %}
+

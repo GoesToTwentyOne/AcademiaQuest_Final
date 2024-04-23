@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Quiz Expert - Student Login Page {% endblock %}
+{% block body %}
+ <!-- .breadcumb-area start -->
+ <div class="breadcumb-area bg-img-4 ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    <h2>Account</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>Register</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .breadcumb-area end -->
+<!-- checkout-area start -->
+<section class="section-content padding-y">
+
+    <!-- ============================ COMPONENT REGISTER   ================================= -->
+        <div class="card mx-auto" style="max-width:800px; margin-top:40px;">
+          <article class="card-body account-form form-style">
+            <div class="text-center">
+            <header class="mb-4"><h4 class="card-title">Login</h4></header>
+            </div>
+            <form method="post" action="{% url 'studentlogin' %}">
+                {% csrf_token %}
+                
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                </div>
+        
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+        
+                <div>
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        </div>
+        
+        
+        {% endblock %}
+
+

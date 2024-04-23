@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Quiz Expert - Prev Ques Show page {% endblock %}
+{% block body %}
+ <!-- .breadcumb-area start -->
+ <div class="breadcumb-area bg-img-4 ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    <h2>Account</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>Previous Questions</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .breadcumb-area end -->
+<!-- checkout-area start -->
+<section class="section-content padding-y">
+
+    <!-- ============================ COMPONENT REGISTER   ================================= -->
+        <div class="card mx-auto" style="max-width:800px; margin-top:40px;">
+          <article class="card-body account-form form-style">
+            <div class="text-center">
+            <header class="mb-4"><h4 class="card-title">Previous Question Upload</h4></header>
+            </div>
+<form method="POST" autocomplete="off" enctype="multipart/form-data" class="my-form">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="username">Semester</label>
+            <input type="text" name="Semester" class="form-control" required placeholder="Summer-2024">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="first_name">Level Term</label>
+            <input type="text" name="LT" class="form-control" required placeholder="3/I">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="profile_pic">Previous Question</label>
+            <input type="file" name="previous_question" class="form-control" required>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+
+ </div>
+</div>
+</div>
+
+<br/><br/>
+
+{% endblock %}

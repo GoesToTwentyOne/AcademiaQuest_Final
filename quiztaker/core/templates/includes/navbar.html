@@ -1,0 +1,122 @@
+{% load static %}
+    <!--Start Preloader-->
+    <div class="preloader-wrap">
+        <div class="spinner"></div>
+    </div>
+    <!-- search-form here -->
+    <div class="search-area flex-style">
+        <span class="closebar">Close</span>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2 col-12">
+                    <div class="search-form">
+                        <form action="#">
+                            <input type="text" placeholder="Search Here...">
+                            <button><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- search-form here -->
+    <!-- header-area start -->
+    <header class="header-area">
+        <div class="header-top bg-2">
+            <div class="fluid-container">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <ul class="d-flex header-contact">
+                            {% if request.user.is_authenticated %}
+                            <li class="title text-muted">Welcome {{request.user.first_name}}!</li>
+                            {% else %}
+                            <li class="title text-muted">Welcome Guest!</li>
+                            {% endif %}
+                            {% if request.user.is_authenticated %}
+                            <li><i class="fa fa-phone"></i> +088 {{request.user.student.mobile }}</li>
+                            <li><i class="fa fa-envelope"></i> {{request.user.email}}</li>
+                            {% else %}
+                            <li><i class="fa fa-phone"></i> +01 123 456 789</li>
+                            <li><i class="fa fa-envelope"></i> youremail@gmail.com</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <ul class="d-flex account_login-area">
+                            <li>
+                                <a href="javascript:void(0);"><i class="fa fa-user"></i> My Account <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown_style">
+                                     {% if request.user.is_authenticated %}
+                                    <li><a href="{% url 'student-dashboard' %}"> Dashboard </a></li>
+                                    <li>
+                                        <form action="{% url 'logout' %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" style="background-color: transparent; border: none; color: white;">Logout</button>
+                                        </form>
+                                    </li>
+                                   
+                
+                                    {% else %}
+                                    <li><a href="{% url 'registrations' %}"> Register </a></li>
+                                    <li><a href="{% url 'studentlogin' %}"> Login </a></li>
+                                    {% endif %}
+
+                                </ul>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="fluid-container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-7 col-sm-6 col-6">
+                        <div class="logo">
+                            <a href="{% url 'home' %}">
+                        <h3>AcademiaQuest</h3>
+                        </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 d-none d-lg-block">
+                        <nav class="mainmenu">
+                            <ul class="d-flex">
+                                <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                                <li><a href="{% url 'about' %}">About</a></li></li>
+                                <li><a href="{% url 'user_home' %}">Student</a></li></li>
+                                <li><a href="{% url 'Previous_Question_show' %}">Previous Ques</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                   
+                    <div class="col-md-1 col-sm-1 col-2 d-block d-lg-none">
+                        <div class="responsive-menu-tigger">
+                            <a href="javascript:void(0);">
+                        <span class="first"></span>
+                        <span class="second"></span>
+                        <span class="third"></span>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- responsive-menu area start -->
+            <div class="responsive-menu-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 d-block d-lg-none">
+                            <ul class="metismenu">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="{% url 'about' %}">About</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- responsive-menu area start -->
+        </div>
+    </header>

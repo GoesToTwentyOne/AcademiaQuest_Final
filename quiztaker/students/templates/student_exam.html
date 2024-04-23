@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Quiz Expert - Student Exam Page {% endblock %}
+{% block body %}
+ <!-- .breadcumb-area start -->
+ <div class="breadcumb-area bg-img-4 ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    <h2> Exam Available </h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>Register</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .breadcumb-area end -->
+<!-- checkout-area start -->
+
+<br/><br/><br/>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+
+          <th>Exam Name</th>
+          
+          <th>Take Exam</th>
+        </tr>
+      </thead>
+      {% for t in courses %}
+      <tr>
+
+        <td>{{t.course_name}}</td>
+        
+        <td><a class="btn btn-danger btn-xs" href="{% url 'take-exam' t.id  %}">Yes</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+<br/><br/><br/>
+{% endblock %}

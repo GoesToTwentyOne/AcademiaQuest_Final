@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Quiz Expert - Contact Page {% endblock %}
+{% block body %}
+    <!-- .breadcumb-area start -->
+    <div class="breadcumb-area bg-img-4 ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcumb-wrap text-center">
+                        <h2>Contact Us</h2>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><span>Contact</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- .breadcumb-area end -->
+    <!-- contact-area start -->
+    <div class="google-map">
+        <div class="contact-map">
+           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3593.2506109155493!2d88.91524227518319!3d25.762284577351487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e35189fdfbb01d%3A0x15261313ab3f22f4!2sBangladesh%20Army%20University%20of%20Science%20and%20Technology!5e0!3m2!1sen!2sus!4v1708359575489!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+    <div class="contact-area ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-12">
+                    <div class="contact-form form-style">
+                        <div class="cf-msg"></div>
+                        <form action="http://themepresss.com/tf/html/tohoney/mail.php" method="post" id="cf">
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" placeholder="Name" id="fname" name="fname">
+                                </div>
+                                <div class="col-12  col-sm-6">
+                                    <input type="text" placeholder="Email" id="email" name="email">
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" placeholder="Subject" id="subject" name="subject">
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="contact-textarea" placeholder="Message" id="msg" name="msg"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button id="submit" name="submit">SEND MESSAGE</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <div class="contact-wrap">
+                        <ul>
+                            <li>
+                                <i class="fa fa-home"></i> Address:
+                                <p>Saidpur Cantonment,Saidpur</p>
+                            </li>
+                            <li>
+                                <i class="fa fa-phone"></i> Email address:
+                                <p>
+                                    <span>nihadgo75@gmail.com </span>
+                                    <span>nihadgo75@gmail.com </span>
+                                </p>
+                            </li>
+                            <li>
+                                <i class="fa fa-envelope"></i> phone number:
+                                <p>
+                                    <span>+088 1773684304</span>
+                                    <span>+088 1568293215</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- contact-area end -->
+   {% endblock %}

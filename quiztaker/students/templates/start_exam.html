@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Quiz Expert - Start Exam Page {% endblock %}
+{% block body %}
+ <!-- .breadcumb-area start -->
+ <div class="breadcumb-area bg-img-4 ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    <h2>Exam Running</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>Register</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .breadcumb-area end -->
+<div class="container my-4">
+    <div class="jumbotron ">
+        <form  action="{% url 'calculate-marks' %}" method="POST">
+            {% csrf_token %}
+            {% for question in questions %}
+            <h3 class="text-success ">{{ forloop.counter }}. {{ question.question }}</h3>
+            <h4 style="text-align: right;">[Marks {{ question.marks }}]</h4>
+        
+            <label for="answer_{{ question.id }}">{{ question.question_text }}</label><br>
+            <select id="answer_{{ question.id }}" name="answer_{{ question.id }}">
+                {% for option, option_label in question.cat %}
+                <option value="{{ option }}"> {{ option_label }} ) {% if option_label == 'a' %} {{ question.a }}
+                    {% elif option_label == 'b' %} {{ question.b }}
+                    {% elif option_label == 'c' %} {{ question.c }}
+                    {% elif option_label == 'd' %} {{ question.d }}
+
+                    {% endif %}
+                </option>
+                {% endfor %}
+            </select>
+            <br/>
+
+            {% endfor %}
+            <br/>
+            <input class="btn btn-danger btn-lg" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+<br><br><br><br><br><br>
+{% endblock %}

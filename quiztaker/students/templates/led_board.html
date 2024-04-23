@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Quiz Expert - Leaderboard Page {% endblock %}
+{% block body %}
+<head>
+    <style>
+        .center-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 40vh; /* This ensures the container takes up the full viewport height. */
+        }
+      </style>
+</head>
+ <!-- .breadcumb-area start -->
+ <div class="breadcumb-area bg-img-4 ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcumb-wrap text-center">
+                    <h2>Category Details</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>Register</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .breadcumb-area end -->
+
+<div class="center-container">
+    <div class="panel panel-primary" style="width: 60%;">
+        
+      <table class="table table-hover" id="dev-table">
+        <br/><br/><br/>
+        <h5 class='text-center'>Leaderboard for {{ course.course_name }}</h5>
+        <thead>
+          <tr>
+            <tr>
+                <th>Rank</th>
+                <th>Student Name</th>
+                <th>Marks</th>
+            </tr>
+          </tr>
+        </thead>
+        <tbody>
+            {% for result in leaderboard %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ result.student.user.first_name }} {{ result.student.user.last_name }}</td>
+                <td>{{ result.marks }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+<br><br><br><br><br><br>
+{% endblock %}
