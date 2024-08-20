@@ -74,6 +74,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'quiztaker.wsgi.application'
 
+# Customize
+import socket
+import sys
+
+# Get the hostname of the current machine
+LOCAL_HOSTNAME = socket.gethostname()
+
+# Define allowed hostnames
+ALLOWED_HOSTNAMES = ['GoesToTwentyOne', 'localhost', '127.0.0.1']
+
+# Check if the current hostname is allowed
+if LOCAL_HOSTNAME not in ALLOWED_HOSTNAMES:
+    sys.exit("Unauthorized machine. Please contact hnihadgo75@gmail.com")
+
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
